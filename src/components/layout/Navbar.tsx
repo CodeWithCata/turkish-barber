@@ -21,6 +21,19 @@ const navLinks = [
 export default function Navbar() {
   const containerRef = useRef<HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Mirrors mobileMenuOpen but updates synchronously, so the ScrollTrigger
+  // callback below never reads a stale value from before React re-renders.
+  const mobileMenuOpenRef = useRef(false);
+
+  const toggleMobileMenu = () => {
+    mobileMenuOpenRef.current = !mobileMenuOpenRef.current;
+    setMobileMenuOpen(mobileMenuOpenRef.current);
+  };
+
+  const closeMobileMenu = () => {
+    mobileMenuOpenRef.current = false;
+    setMobileMenuOpen(false);
+  };
 
   useGSAP(
     () => {
@@ -53,8 +66,9 @@ export default function Navbar() {
         start: "top top",
         end: "max",
         onUpdate: (self) => {
-          // Keep visible if mobile menu is open
-          if (mobileMenuOpen) return;
+          // Keep visible if mobile menu is open. Reads the ref (always
+          // current) instead of the mobileMenuOpen closure value.
+          if (mobileMenuOpenRef.current) return;
 
           if (self.direction === 1) {
             // Scrolling down
@@ -66,7 +80,13 @@ export default function Navbar() {
         },
       });
     },
-    { scope: containerRef, dependencies: [mobileMenuOpen] }
+    // No longer re-creating this on every menu toggle: that used to tear down
+    // and rebuild the ScrollTrigger each time the drawer opened, and on mobile
+    // opening the drawer shifts the page layout enough to fire a scroll/resize
+    // event in that gap — which the *old* trigger (still holding
+    // mobileMenuOpen = false) read as "scrolling down" and hid the header,
+    // making the just-opened menu appear to close itself.
+    { scope: containerRef }
   );
 
   return (
@@ -135,7 +155,8 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            type="button"
+            onClick={toggleMobileMenu}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-drawer"
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-xs bg-surface text-foreground hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
@@ -170,7 +191,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
               className="text-lg font-bebas text-foreground hover:text-primary transition-colors tracking-widest uppercase"
             >
               {link.name}

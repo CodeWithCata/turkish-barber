@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Cookie } from "lucide-react";
-
-const CONSENT_KEY = "cookie-consent";
+import { COOKIE_CONSENT_KEY, setCookieConsent } from "@/hooks/useCookieConsent";
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -12,7 +11,7 @@ export default function CookieConsent() {
 
   useEffect(() => {
     // Only show if the visitor hasn't already made a choice.
-    const stored = window.localStorage.getItem(CONSENT_KEY);
+    const stored = window.localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!stored) {
       setVisible(true);
     }
@@ -25,12 +24,12 @@ export default function CookieConsent() {
   }, [visible]);
 
   const accept = () => {
-    window.localStorage.setItem(CONSENT_KEY, "accepted");
+    setCookieConsent("accepted");
     setVisible(false);
   };
 
   const decline = () => {
-    window.localStorage.setItem(CONSENT_KEY, "declined");
+    setCookieConsent("declined");
     setVisible(false);
   };
 
@@ -81,12 +80,14 @@ export default function CookieConsent() {
 
         <div className="flex flex-col sm:flex-row gap-3 shrink-0">
           <button
+            type="button"
             onClick={decline}
             className="w-full sm:w-auto flex items-center justify-center bg-transparent border border-muted/30 text-muted hover:text-foreground hover:border-foreground/40 font-sans text-sm px-6 py-3 rounded-xs font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             Doar cele necesare
           </button>
           <button
+            type="button"
             ref={acceptButtonRef}
             onClick={accept}
             className="w-full sm:w-auto flex items-center justify-center bg-primary text-background font-bebas text-base px-6 py-3 rounded-xs font-bold tracking-widest hover:brightness-110 active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"

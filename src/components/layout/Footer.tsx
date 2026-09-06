@@ -187,6 +187,43 @@ export default function Footer() {
 
         </div>
 
+        {/* ANPC SOL / SAL Badges — legally required for RO commercial sites.
+            Expects sol.svg and sal.svg to be placed in /public. */}
+        <div className="pt-8 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="https://ec.europa.eu/consumers/odr"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Platforma SOL - Soluționarea online a litigiilor"
+            className="opacity-90 hover:opacity-100 transition-opacity"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/sol.svg"
+              alt="Platforma SOL - Soluționarea online a litigiilor"
+              width={200}
+              height={40}
+              className="w-[180px] h-auto sm:w-[200px]"
+            />
+          </a>
+          <a
+            href="https://anpc.ro/ce-este-sal/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="SAL - Soluționarea alternativă a litigiilor"
+            className="opacity-90 hover:opacity-100 transition-opacity"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/sal.svg"
+              alt="SAL - Soluționarea alternativă a litigiilor"
+              width={200}
+              height={40}
+              className="w-[180px] h-auto sm:w-[200px]"
+            />
+          </a>
+        </div>
+
         {/* Legal & Copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted font-sans gap-4">
           <p>© {new Date().getFullYear()} Turkish Barber Medgidia. Toate drepturile rezervate.</p>

@@ -1,10 +1,13 @@
 "use client";
 
-import { MapPin, Phone, Clock, Navigation, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Clock, Navigation, ExternalLink, Cookie } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useCookieConsent, setCookieConsent } from "@/hooks/useCookieConsent";
 
 export default function Location() {
   const containerRef = useScrollReveal<HTMLElement>();
+  const consent = useCookieConsent();
+  const mapAllowed = consent === "accepted";
 
   return (
     <section id="locatie" ref={containerRef} className="w-full bg-background relative py-24 px-4 sm:px-8 overflow-hidden">
@@ -126,14 +129,34 @@ export default function Location() {
             <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-primary pointer-events-none z-10" />
             <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-primary pointer-events-none z-10" />
 
-            {/* Dark Mode Custom Google Maps Embed */}
-            <iframe
-              title="Google Map Location - Turkish Barber Medgidia"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.5!2d28.269209!3d44.245884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ba9195da26e40b%3A0xefabd42207d0fbde!2sTurkish%20Barber%20Shop!5e0!3m2!1sro!2sro!4v1710000000000!5m2!1sro!2sro"
-              className="w-full h-full min-h-[360px] rounded-xs border-0 filter grayscale invert contrast-[1.2] opacity-85 hover:opacity-100 transition-opacity"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            {/* Google Maps sets third-party cookies, so only load the embed
+                once the visitor has accepted cookies. */}
+            {mapAllowed ? (
+              <iframe
+                title="Google Map Location - Turkish Barber Medgidia"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.5!2d28.269209!3d44.245884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ba9195da26e40b%3A0xefabd42207d0fbde!2sTurkish%20Barber%20Shop!5e0!3m2!1sro!2sro!4v1710000000000!5m2!1sro!2sro"
+                className="w-full h-full min-h-[360px] rounded-xs border-0 filter grayscale invert contrast-[1.2] opacity-85 hover:opacity-100 transition-opacity"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <div className="w-full h-full min-h-[360px] flex flex-col items-center justify-center text-center gap-3 px-6">
+                <div className="p-3 bg-primary/10 text-primary rounded-full">
+                  <Cookie className="w-6 h-6" />
+                </div>
+                <p className="font-sans text-sm text-muted max-w-xs">
+                  Harta este încărcată de Google Maps și necesită acceptarea
+                  cookie-urilor pentru a fi afișată.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setCookieConsent("accepted")}
+                  className="font-bebas text-sm tracking-widest uppercase bg-primary text-background px-5 py-2.5 rounded-xs font-bold hover:brightness-110 active:scale-95 transition-all"
+                >
+                  Acceptă cookie-uri
+                </button>
+              </div>
+            )}
           </div>
 
         </div>
