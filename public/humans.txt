@@ -1,0 +1,9 @@
+/* TEAM */ 
+Developer: Your Name 
+Location: Romania 
+ 
+/* SITE */ 
+Last update: 2026 
+Language: Romanian 
+Doctype: HTML5 
+IDE: VS Code 

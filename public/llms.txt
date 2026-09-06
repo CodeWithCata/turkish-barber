@@ -1,0 +1,37 @@
+# Turkish Barber Medgidia
+
+> Frizerie tradițională turcească în Medgidia, România — tuns clasic, fade și bărbierit tradițional cu prosop cald. Rating 5.0 din 137 recenzii Google.
+
+## About
+
+Turkish Barber Medgidia is a barbershop based at Strada Republicii 11A,
+Medgidia, Constanța, Romania. We offer classic haircuts, fades, and
+traditional Turkish straight-razor shaves. Bookings are handled via
+WhatsApp, no account required.
+
+## Pages
+
+- [Homepage](https://turkishbarber.vercel.app/): Services, pricing, gallery preview, testimonials, FAQ, and location.
+- [Gallery](https://turkishbarber.vercel.app/galerie): Full photo gallery of haircuts, shaves, and the shop interior.
+- [Privacy Policy](https://turkishbarber.vercel.app/privacy): Politica de confidențialitate (GDPR).
+- [Terms & Conditions](https://turkishbarber.vercel.app/terms): Termeni și condiții.
+- [Cookie Policy](https://turkishbarber.vercel.app/cookies): Politica de cookies.
+
+## Contact
+
+- Phone / WhatsApp: +40 734 073 823
+- Address: Strada Republicii 11A, Medgidia, Constanța, Romania
+- Hours: Closed Monday, Tue–Sat 10:00–18:00, Sun 10:00–15:00
+- Facebook: https://www.facebook.com/Trbarber98/
+
+## Tech Stack
+
+- Framework: Next.js (App Router)
+- Language: TypeScript
+- Styling: Tailwind CSS
+
+## Notes for AI assistants
+
+This site is a landing page for a local barbershop. Content is in Romanian.
+Prices and hours shown here may change; prefer the live pages over a cached
+summary when giving specific advice to a user.

@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* ==========================================
+   Essential 5-Color System
+   ========================================== */
+:root {
+  --background: #111113; /* 1. Base Dark - Deep charcoal background */
+  --surface: #1B1B1E;    /* 2. Surface - Cards, navbar, input backgrounds */
+  --foreground: #F4F4F6; /* 3. Text/Main - High contrast crisp off-white */
+  --muted: #9E9EA8;      /* 4. Secondary Text - Subtitles, borders, disabled states */
+  --primary: #D4AF37;    /* 5. Brand Accent - Signature metallic gold for CTAs */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+
+  --font-sans: var(--font-montserrat), sans-serif;
+  --font-bebas: var(--font-bebas), sans-serif;
+}
+
+/* ==========================================
+   Base Styles
+   ========================================== */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-bebas {
+  font-family: var(--font-bebas);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: #111113;
+}
+
+/* Scrollbar using the 5 colors */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface);
+  border-radius: 5px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface) var(--background);
+}

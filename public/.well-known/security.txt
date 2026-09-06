@@ -1,0 +1,3 @@
+Contact: mailto:contact@yourdomain.com
+Expires: 2026-12-31T00:00:00z
+Preferred-Languages: ro, en

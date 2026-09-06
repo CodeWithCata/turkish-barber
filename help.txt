@@ -1,0 +1,12 @@
+================================================================================ 
+NEWAPP SETUP GUIDE — Everything you must do after running newapp.bat 
+Read this top to bottom. Do NOT skip steps. 
+ 
+STEP 1 — FIND & REPLACE PLACEHOLDERS (do this first, in every file) 
+ 
+Open VS Code, press Ctrl+Shift+H (Find & Replace in all files), and replace: 
+"yourdomain.com"          →  your real domain (e.g. acmestudio.ro) 
+"Numele Companiei Tale"   →  your real company name (e.g. Acme Studio) 
+"contact@yourdomain.com"  →  your real contact email 
+"security@yourdomain.com" →  your security contact (can be same as above) 
+"Descrierea companiei"    →  your real one-line description 
